@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>University Exam Tracker</title>
-<link rel="stylesheet" href="style.css?v=3">
+
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          SETUP SCREEN
-    ========================== -->
+    ====================================================== -->
+
     <section id="setupScreen" class="screen">
 
         <div class="setup-container">
@@ -21,9 +23,14 @@
                 📚
             </div>
 
-            <span class="eyebrow">UNIVERSITY EXAM TRACKER</span>
+            <span class="eyebrow">
+                UNIVERSITY EXAM TRACKER
+            </span>
 
-            <h1>Let's set up your<br>academic profile.</h1>
+            <h1>
+                Let's set up your<br>
+                academic profile.
+            </h1>
 
             <p class="setup-description">
                 Enter your university information to start tracking
@@ -35,7 +42,10 @@
                 <div class="form-row">
 
                     <div class="form-group">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName">
+                            First Name
+                        </label>
+
                         <input
                             type="text"
                             id="firstName"
@@ -45,7 +55,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName">
+                            Last Name
+                        </label>
+
                         <input
                             type="text"
                             id="lastName"
@@ -56,8 +69,12 @@
 
                 </div>
 
+
                 <div class="form-group">
-                    <label for="studentId">Student ID</label>
+                    <label for="studentId">
+                        Student ID
+                    </label>
+
                     <input
                         type="text"
                         id="studentId"
@@ -66,8 +83,12 @@
                     >
                 </div>
 
+
                 <div class="form-group">
-                    <label for="faculty">Faculty</label>
+                    <label for="faculty">
+                        Faculty
+                    </label>
+
                     <input
                         type="text"
                         id="faculty"
@@ -76,8 +97,12 @@
                     >
                 </div>
 
+
                 <div class="form-group">
-                    <label for="department">Department</label>
+                    <label for="department">
+                        Department
+                    </label>
+
                     <input
                         type="text"
                         id="department"
@@ -86,10 +111,14 @@
                     >
                 </div>
 
+
                 <div class="form-row">
 
                     <div class="form-group">
-                        <label for="academicYear">Academic Year</label>
+                        <label for="academicYear">
+                            Academic Year
+                        </label>
+
                         <input
                             type="text"
                             id="academicYear"
@@ -98,25 +127,65 @@
                         >
                     </div>
 
-                    <div class="form-group">
-                        <label for="currentSemester">Current Semester</label>
 
-                        <select id="currentSemester" required>
-                            <option value="">Select</option>
-                            <option value="1">Semester 1</option>
-                            <option value="2">Semester 2</option>
-                            <option value="3">Semester 3</option>
-                            <option value="4">Semester 4</option>
-                            <option value="5">Semester 5</option>
-                            <option value="6">Semester 6</option>
-                            <option value="7">Semester 7</option>
-                            <option value="8">Semester 8</option>
+                    <div class="form-group">
+
+                        <label for="currentSemester">
+                            Current Semester
+                        </label>
+
+                        <select
+                            id="currentSemester"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="1">
+                                Semester 1
+                            </option>
+
+                            <option value="2">
+                                Semester 2
+                            </option>
+
+                            <option value="3">
+                                Semester 3
+                            </option>
+
+                            <option value="4">
+                                Semester 4
+                            </option>
+
+                            <option value="5">
+                                Semester 5
+                            </option>
+
+                            <option value="6">
+                                Semester 6
+                            </option>
+
+                            <option value="7">
+                                Semester 7
+                            </option>
+
+                            <option value="8">
+                                Semester 8
+                            </option>
+
                         </select>
+
                     </div>
 
                 </div>
 
-                <button type="submit" class="primary-button">
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
                     Continue
                     <span>→</span>
                 </button>
@@ -128,17 +197,25 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          DASHBOARD
-    ========================== -->
-    <section id="dashboardScreen" class="screen hidden">
+    ====================================================== -->
+
+    <section
+        id="dashboardScreen"
+        class="screen hidden"
+    >
 
         <header class="dashboard-header">
 
             <div class="header-inner">
 
                 <div class="brand">
-                    <div class="brand-icon">📚</div>
+
+                    <div class="brand-icon">
+                        📚
+                    </div>
 
                     <div>
                         <span class="brand-title">
@@ -149,11 +226,27 @@
                             Academic Dashboard
                         </span>
                     </div>
+
                 </div>
 
-                <button id="profileButton" class="profile-button">
-                    <span class="profile-avatar">👤</span>
-                    <span class="profile-text">Profile</span>
+
+                <button
+                    id="profileButton"
+                    class="profile-button"
+                    type="button"
+                >
+
+                    <span
+                        id="headerProfilePhoto"
+                        class="profile-avatar"
+                    >
+                        👤
+                    </span>
+
+                    <span class="profile-text">
+                        Profile
+                    </span>
+
                 </button>
 
             </div>
@@ -161,38 +254,50 @@
         </header>
 
 
+
         <main class="dashboard">
 
             <!-- Welcome -->
+
             <section class="welcome-section">
 
                 <div>
+
                     <span class="section-label">
                         UNIVERSITY ACADEMIC RECORD
                     </span>
 
                     <h1>
                         Welcome back,
-                        <span id="studentName">Student</span>
+                        <span id="studentName">
+                            Student
+                        </span>
                     </h1>
 
                     <p>
-                        Keep track of your academic progress throughout
-                        your university journey.
+                        Keep track of your academic progress
+                        throughout your university journey.
                     </p>
+
                 </div>
 
             </section>
 
 
+
             <!-- Student information -->
+
             <section class="student-info-card">
 
                 <div class="student-info-main">
 
-                    <div class="student-avatar">
+                    <div
+                        id="dashboardProfilePhoto"
+                        class="student-avatar"
+                    >
                         👤
                     </div>
+
 
                     <div class="student-details">
 
@@ -208,9 +313,11 @@
 
                 </div>
 
+
                 <div class="student-meta">
 
                     <div class="meta-item">
+
                         <span class="meta-label">
                             Student ID
                         </span>
@@ -218,11 +325,15 @@
                         <strong id="studentIdDisplay">
                             —
                         </strong>
+
                     </div>
+
 
                     <div class="meta-divider"></div>
 
+
                     <div class="meta-item">
+
                         <span class="meta-label">
                             Current Semester
                         </span>
@@ -230,6 +341,7 @@
                         <strong id="currentSemesterDisplay">
                             —
                         </strong>
+
                     </div>
 
                 </div>
@@ -237,7 +349,9 @@
             </section>
 
 
+
             <!-- Overall performance -->
+
             <section class="overall-card">
 
                 <div class="overall-left">
@@ -246,13 +360,16 @@
                         OVERALL PERFORMANCE
                     </span>
 
-                    <h2>Your academic average</h2>
+                    <h2>
+                        Your academic average
+                    </h2>
 
                     <p>
                         Based on your recorded semester results.
                     </p>
 
                 </div>
+
 
                 <div class="overall-score">
 
@@ -269,23 +386,30 @@
             </section>
 
 
+
             <!-- Semesters -->
+
             <section class="semester-section">
 
                 <div class="section-heading">
 
                     <div>
+
                         <span class="section-label">
                             ACADEMIC JOURNEY
                         </span>
 
-                        <h2>Semesters</h2>
+                        <h2>
+                            Semesters
+                        </h2>
 
                         <p>
                             Select a semester to view your subjects
                             and exam results.
                         </p>
+
                     </div>
+
 
                     <span class="semester-count">
                         8 Semesters
@@ -294,10 +418,6 @@
                 </div>
 
 
-                <!--
-                    JavaScript will create the
-                    8 semester rows here.
-                -->
                 <div
                     id="semesterProgress"
                     class="semester-list"
@@ -310,10 +430,15 @@
     </section>
 
 
-    <!-- =========================
-         SEMESTER PAGE
-    ========================== -->
-    <section id="semesterScreen" class="screen hidden">
+
+    <!-- =====================================================
+         SEMESTER SCREEN
+    ====================================================== -->
+
+    <section
+        id="semesterScreen"
+        class="screen hidden"
+    >
 
         <header class="page-header">
 
@@ -324,8 +449,15 @@
                     class="back-button"
                     type="button"
                 >
-                    <span>←</span>
-                    <span>Dashboard</span>
+
+                    <span>
+                        ←
+                    </span>
+
+                    <span>
+                        Dashboard
+                    </span>
+
                 </button>
 
             </div>
@@ -335,7 +467,6 @@
 
         <main class="semester-page">
 
-            <!-- Semester heading -->
             <section class="semester-hero">
 
                 <div>
@@ -349,8 +480,8 @@
                     </h1>
 
                     <p>
-                        View and manage your subjects and examination
-                        results for this semester.
+                        View and manage your subjects and
+                        examination results for this semester.
                     </p>
 
                 </div>
@@ -358,7 +489,7 @@
             </section>
 
 
-            <!-- Semester average -->
+
             <section class="semester-average-card">
 
                 <div class="average-info">
@@ -367,13 +498,16 @@
                         SEMESTER PERFORMANCE
                     </span>
 
-                    <h2>Semester Average</h2>
+                    <h2>
+                        Semester Average
+                    </h2>
 
                     <p>
                         Your average based on the recorded subjects.
                     </p>
 
                 </div>
+
 
                 <div class="semester-average-score">
 
@@ -390,27 +524,30 @@
             </section>
 
 
-            <!-- Subjects -->
+
             <section class="subjects-section">
 
                 <div class="section-heading">
 
                     <div>
+
                         <span class="section-label">
                             ACADEMIC RESULTS
                         </span>
 
-                        <h2>Subjects</h2>
+                        <h2>
+                            Subjects
+                        </h2>
 
                         <p>
                             Your examination results for this semester.
                         </p>
+
                     </div>
 
                 </div>
 
 
-                <!-- JavaScript inserts subjects here -->
                 <div
                     id="subjectList"
                     class="subject-list"
@@ -422,16 +559,27 @@
                     class="add-subject-button"
                     type="button"
                 >
-                    <span class="add-icon">+</span>
+
+                    <span class="add-icon">
+                        +
+                    </span>
 
                     <span>
-                        <strong>Add Subject</strong>
+
+                        <strong>
+                            Add Subject
+                        </strong>
+
                         <small>
                             Record an examination result
                         </small>
+
                     </span>
 
-                    <span class="button-arrow">→</span>
+                    <span class="button-arrow">
+                        →
+                    </span>
+
                 </button>
 
             </section>
@@ -441,10 +589,15 @@
     </section>
 
 
-    <!-- =========================
-         ADD SUBJECT PAGE
-    ========================== -->
-    <section id="subjectScreen" class="screen hidden">
+
+    <!-- =====================================================
+         SUBJECT SCREEN
+    ====================================================== -->
+
+    <section
+        id="subjectScreen"
+        class="screen hidden"
+    >
 
         <div class="subject-page-wrapper">
 
@@ -455,8 +608,15 @@
                     class="back-button"
                     type="button"
                 >
-                    <span>←</span>
-                    <span>Back to Semester</span>
+
+                    <span>
+                        ←
+                    </span>
+
+                    <span>
+                        Back to Semester
+                    </span>
+
                 </button>
 
 
@@ -470,9 +630,11 @@
                         EXAMINATION RECORD
                     </span>
 
-                    <h1>Add Subject</h1>
+                    <h1 id="subjectFormTitle">
+                        Add Subject
+                    </h1>
 
-                    <p>
+                    <p id="subjectFormDescription">
                         Enter the examination result you want
                         to record for this subject.
                     </p>
@@ -504,7 +666,10 @@
                             Examination
                         </label>
 
-                        <select id="examType" required>
+                        <select
+                            id="examType"
+                            required
+                        >
 
                             <option value="">
                                 Select examination
@@ -548,12 +713,17 @@
                     <div class="marks-preview">
 
                         <div>
-                            <span>Current Result</span>
+
+                            <span>
+                                Current Result
+                            </span>
 
                             <small>
                                 Recorded marks
                             </small>
+
                         </div>
+
 
                         <strong id="totalPreview">
                             —
@@ -565,10 +735,13 @@
                     <div class="form-group">
 
                         <label for="subjectNotes">
+
                             Notes
+
                             <span class="optional">
                                 Optional
                             </span>
+
                         </label>
 
                         <textarea
@@ -584,8 +757,15 @@
                         type="submit"
                         class="primary-button save-subject-button"
                     >
-                        Save Subject
-                        <span>✓</span>
+
+                        <span id="subjectSaveText">
+                            Save Subject
+                        </span>
+
+                        <span>
+                            ✓
+                        </span>
+
                     </button>
 
                 </form>
@@ -597,7 +777,286 @@
     </section>
 
 
-    <script src="script.js?v=3"></script>
+
+    <!-- =====================================================
+         PROFILE SCREEN
+    ====================================================== -->
+
+    <section
+        id="profileScreen"
+        class="screen hidden"
+    >
+
+        <header class="page-header">
+
+            <div class="page-header-inner">
+
+                <button
+                    id="backFromProfileButton"
+                    class="back-button"
+                    type="button"
+                >
+
+                    <span>
+                        ←
+                    </span>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <main class="profile-page">
+
+            <section class="profile-hero">
+
+                <span class="section-label">
+                    STUDENT PROFILE
+                </span>
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <p>
+                    Manage your personal and university information.
+                </p>
+
+            </section>
+
+
+            <section class="profile-card">
+
+                <div class="profile-photo-section">
+
+                    <div
+                        id="profilePhotoPreview"
+                        class="large-profile-photo"
+                    >
+                        👤
+                    </div>
+
+
+                    <div class="photo-actions">
+
+                        <h2>
+                            Profile Photo
+                        </h2>
+
+                        <p>
+                            Add a photo to personalize your profile.
+                        </p>
+
+
+                        <label
+                            for="profilePhotoInput"
+                            class="photo-upload-button"
+                        >
+                            Upload Photo
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profilePhotoInput"
+                            accept="image/*"
+                            hidden
+                        >
+
+
+                        <button
+                            id="removeProfilePhotoButton"
+                            class="remove-photo-button"
+                            type="button"
+                        >
+                            Remove Photo
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-divider"></div>
+
+
+                <form id="profileForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="profileFirstName">
+                                First Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileFirstName"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="profileLastName">
+                                Last Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileLastName"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="profileStudentId">
+                            Student ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profileStudentId"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="profileFaculty">
+                            Faculty
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profileFaculty"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="profileDepartment">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="profileDepartment"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="profileAcademicYear">
+                                Academic Year
+                            </label>
+
+                            <input
+                                type="text"
+                                id="profileAcademicYear"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="profileCurrentSemester">
+                                Current Semester
+                            </label>
+
+                            <select
+                                id="profileCurrentSemester"
+                                required
+                            >
+
+                                <option value="1">
+                                    Semester 1
+                                </option>
+
+                                <option value="2">
+                                    Semester 2
+                                </option>
+
+                                <option value="3">
+                                    Semester 3
+                                </option>
+
+                                <option value="4">
+                                    Semester 4
+                                </option>
+
+                                <option value="5">
+                                    Semester 5
+                                </option>
+
+                                <option value="6">
+                                    Semester 6
+                                </option>
+
+                                <option value="7">
+                                    Semester 7
+                                </option>
+
+                                <option value="8">
+                                    Semester 8
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+
+                        Save Profile
+
+                        <span>
+                            ✓
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+
+    <script src="script.js?v=4"></script>
 
 </body>
 </html>
