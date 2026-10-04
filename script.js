@@ -1,31 +1,61 @@
-/* ========================================
+/* =========================================================
    UNIVERSITY EXAM TRACKER
    Main Application Logic
-======================================== */
+========================================================= */
 
 
-/* ========================================
+/* =========================================================
    ELEMENTS
-======================================== */
+========================================================= */
 
-const setupScreen = document.getElementById("setupScreen");
-const dashboardScreen = document.getElementById("dashboardScreen");
-const semesterScreen = document.getElementById("semesterScreen");
-const subjectScreen = document.getElementById("subjectScreen");
+const setupScreen =
+    document.getElementById("setupScreen");
 
-const studentForm = document.getElementById("studentForm");
+const dashboardScreen =
+    document.getElementById("dashboardScreen");
 
-const studentName = document.getElementById("studentName");
-const dashboardFaculty = document.getElementById("dashboardFaculty");
-const dashboardId = document.getElementById("dashboardId");
-const dashboardSemester = document.getElementById("dashboardSemester");
+const semesterScreen =
+    document.getElementById("semesterScreen");
 
-const overallAverage = document.getElementById("overallAverage");
-const semesterProgress = document.getElementById("semesterProgress");
+const subjectScreen =
+    document.getElementById("subjectScreen");
 
-const semesterTitle = document.getElementById("semesterTitle");
-const semesterAverage = document.getElementById("semesterAverage");
-const subjectList = document.getElementById("subjectList");
+
+const setupForm =
+    document.getElementById("setupForm");
+
+const studentName =
+    document.getElementById("studentName");
+
+const studentFullName =
+    document.getElementById("studentFullName");
+
+const studentFaculty =
+    document.getElementById("studentFaculty");
+
+const studentIdDisplay =
+    document.getElementById("studentIdDisplay");
+
+const currentSemesterDisplay =
+    document.getElementById("currentSemesterDisplay");
+
+
+const overallAverage =
+    document.getElementById("overallAverage");
+
+const semesterProgress =
+    document.getElementById("semesterProgress");
+
+
+const semesterTitle =
+    document.getElementById("semesterTitle");
+
+const semesterAverage =
+    document.getElementById("semesterAverage");
+
+const subjectList =
+    document.getElementById("subjectList");
+
 
 const backToDashboardButton =
     document.getElementById("backToDashboardButton");
@@ -33,11 +63,15 @@ const backToDashboardButton =
 const addSubjectButton =
     document.getElementById("addSubjectButton");
 
-const subjectForm =
-    document.getElementById("subjectForm");
-
 const cancelSubjectButton =
     document.getElementById("cancelSubjectButton");
+
+const profileButton =
+    document.getElementById("profileButton");
+
+
+const subjectForm =
+    document.getElementById("subjectForm");
 
 const subjectName =
     document.getElementById("subjectName");
@@ -59,23 +93,29 @@ const subjectNotes =
 
 
 
-/* ========================================
+/* =========================================================
    DATA
-======================================== */
+========================================================= */
 
 let studentProfile =
-    JSON.parse(localStorage.getItem("studentProfile")) || null;
+    JSON.parse(
+        localStorage.getItem("studentProfile")
+    ) || null;
+
 
 let subjects =
-    JSON.parse(localStorage.getItem("subjects")) || [];
+    JSON.parse(
+        localStorage.getItem("subjects")
+    ) || [];
+
 
 let selectedSemester = null;
 
 
 
-/* ========================================
-   INITIALIZE APP
-======================================== */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -93,15 +133,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-/* ========================================
+/* =========================================================
    SCREEN NAVIGATION
-======================================== */
+========================================================= */
 
 function hideAllScreens() {
 
     setupScreen.classList.add("hidden");
+
     dashboardScreen.classList.add("hidden");
+
     semesterScreen.classList.add("hidden");
+
     subjectScreen.classList.add("hidden");
 
 }
@@ -126,7 +169,7 @@ function showDashboard() {
 
     updateOverallAverage();
 
-    createSemesterCards();
+    createSemesterList();
 
 }
 
@@ -158,36 +201,57 @@ function showSubjectScreen() {
 
 
 
-/* ========================================
+/* =========================================================
    STUDENT PROFILE
-======================================== */
+========================================================= */
 
-studentForm.addEventListener("submit", (event) => {
+setupForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
+
 
     studentProfile = {
 
         firstName:
-            document.getElementById("firstName").value.trim(),
+            document
+                .getElementById("firstName")
+                .value
+                .trim(),
 
         lastName:
-            document.getElementById("lastName").value.trim(),
+            document
+                .getElementById("lastName")
+                .value
+                .trim(),
 
         studentId:
-            document.getElementById("studentId").value.trim(),
+            document
+                .getElementById("studentId")
+                .value
+                .trim(),
 
         faculty:
-            document.getElementById("faculty").value.trim(),
+            document
+                .getElementById("faculty")
+                .value
+                .trim(),
 
         department:
-            document.getElementById("department").value.trim(),
+            document
+                .getElementById("department")
+                .value
+                .trim(),
 
         academicYear:
-            document.getElementById("academicYear").value.trim(),
+            document
+                .getElementById("academicYear")
+                .value
+                .trim(),
 
         semester:
-            document.getElementById("semester").value
+            document
+                .getElementById("currentSemester")
+                .value
 
     };
 
@@ -208,104 +272,150 @@ function loadStudentProfile() {
     if (!studentProfile) return;
 
 
-    studentName.textContent =
+    const fullName =
         `${studentProfile.firstName} ${studentProfile.lastName}`;
 
 
-    dashboardFaculty.textContent =
-        studentProfile.faculty;
+    studentName.textContent =
+        fullName;
 
 
-    dashboardId.textContent =
-        studentProfile.studentId;
+    studentFullName.textContent =
+        fullName;
 
 
-    dashboardSemester.textContent =
-        studentProfile.semester;
+    studentFaculty.textContent =
+        studentProfile.faculty || "Faculty";
+
+
+    studentIdDisplay.textContent =
+        studentProfile.studentId || "—";
+
+
+    currentSemesterDisplay.textContent =
+        studentProfile.semester
+            ? `Semester ${studentProfile.semester}`
+            : "—";
 
 }
 
 
 
-/* ========================================
-   SEMESTER CARDS
-======================================== */
+/* =========================================================
+   SEMESTER LIST
+========================================================= */
 
-function createSemesterCards() {
+function createSemesterList() {
 
     semesterProgress.innerHTML = "";
 
 
     for (let i = 1; i <= 8; i++) {
 
-        const semester = `Semester ${i}`;
+        const semester =
+            `Semester ${i}`;
+
 
         const semesterSubjects =
             subjects.filter(
-                subject => subject.semester === semester
+                subject =>
+                    subject.semester === semester
             );
 
 
         const average =
-            calculateAverage(semesterSubjects);
+            calculateAverage(
+                semesterSubjects
+            );
 
 
-        const card =
+        const subjectCount =
+            semesterSubjects.length;
+
+
+        const button =
             document.createElement("button");
 
-        card.type = "button";
 
-        card.className = "semester-card";
+        button.type = "button";
+
+        button.className =
+            "semester-item";
 
 
-        card.innerHTML = `
+        button.innerHTML = `
 
-            <div class="semester-card-top">
+            <div class="semester-number">
+                ${i}
+            </div>
 
-                <div class="semester-number">
-                    ${i}
+
+            <div class="semester-info">
+
+                <h3>
+                    ${semester}
+                </h3>
+
+                <p>
+                    ${
+                        subjectCount === 0
+                            ? "No subjects recorded yet"
+                            : `${subjectCount} ${
+                                subjectCount === 1
+                                    ? "subject"
+                                    : "subjects"
+                              } recorded`
+                    }
+                </p>
+
+            </div>
+
+
+            <div class="semester-progress">
+
+                <div class="semester-progress-bar">
+
+                    <div
+                        class="semester-progress-fill"
+                        style="width: ${average}%"
+                    ></div>
+
                 </div>
 
-                <span class="semester-arrow">
-                    →
-                </span>
-
-            </div>
-
-
-            <div class="semester-card-content">
-
-                <span>
-                    ${semester}
-                </span>
-
-                <strong>
+                <span class="semester-percentage">
                     ${average}%
-                </strong>
+                </span>
 
             </div>
 
 
-            <div class="progress-track">
+            <div class="semester-average">
+                ${average}%
+            </div>
 
-                <div
-                    class="progress-fill"
-                    style="width: ${average}%"
-                ></div>
 
+            <div class="semester-arrow">
+                →
             </div>
 
         `;
 
 
-        card.addEventListener("click", () => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            showSemesterScreen(semester);
+                showSemesterScreen(
+                    semester
+                );
 
-        });
+            }
+        );
 
 
-        semesterProgress.appendChild(card);
+        semesterProgress.appendChild(
+            button
+        );
 
     }
 
@@ -313,13 +423,13 @@ function createSemesterCards() {
 
 
 
-/* ========================================
-   AVERAGE CALCULATIONS
-======================================== */
+/* =========================================================
+   AVERAGES
+========================================================= */
 
 function calculateAverage(subjectArray) {
 
-    if (subjectArray.length === 0) {
+    if (!subjectArray.length) {
 
         return 0;
 
@@ -328,7 +438,14 @@ function calculateAverage(subjectArray) {
 
     const total =
         subjectArray.reduce(
-            (sum, subject) => sum + subject.total,
+            (sum, subject) => {
+
+                return sum +
+                    Number(
+                        subject.total || 0
+                    );
+
+            },
             0
         );
 
@@ -353,49 +470,56 @@ function updateOverallAverage() {
 
 
 
-/* ========================================
+/* =========================================================
    SEMESTER PAGE
-======================================== */
+========================================================= */
 
 function updateSemesterPage() {
 
     const semesterSubjects =
         subjects.filter(
             subject =>
-                subject.semester === selectedSemester
+                subject.semester ===
+                selectedSemester
         );
 
 
     const average =
-        calculateAverage(semesterSubjects);
+        calculateAverage(
+            semesterSubjects
+        );
 
 
     semesterAverage.textContent =
         `${average}%`;
 
 
-    renderSubjects(semesterSubjects);
+    renderSubjects(
+        semesterSubjects
+    );
 
 }
 
 
 
-/* ========================================
+/* =========================================================
    SUBJECT LIST
-======================================== */
+========================================================= */
 
-function renderSubjects(semesterSubjects) {
+function renderSubjects(
+    semesterSubjects
+) {
 
     subjectList.innerHTML = "";
 
 
-    if (semesterSubjects.length === 0) {
+    if (!semesterSubjects.length) {
 
         subjectList.innerHTML = `
 
             <div class="empty-state">
 
-                <div class="empty-icon">
+                <div class="empty-state-icon">
                     📚
                 </div>
 
@@ -404,7 +528,8 @@ function renderSubjects(semesterSubjects) {
                 </h3>
 
                 <p>
-                    Add your first subject to this semester.
+                    Add your first subject to start
+                    tracking this semester.
                 </p>
 
             </div>
@@ -416,65 +541,120 @@ function renderSubjects(semesterSubjects) {
     }
 
 
-    semesterSubjects.forEach(subject => {
+    semesterSubjects.forEach(
+        (subject) => {
 
-        const card =
-            document.createElement("div");
+            const card =
+                document.createElement(
+                    "div"
+                );
 
-        card.className = "subject-card";
+
+            card.className =
+                "subject-card";
 
 
-        card.innerHTML = `
+            const status =
+                getSubjectStatus(
+                    subject
+                );
 
-            <div class="subject-card-main">
 
-                <div class="subject-icon">
-                    📖
-                </div>
+            card.innerHTML = `
 
                 <div class="subject-info">
 
-                    <h3>
-                        ${escapeHTML(subject.name)}
-                    </h3>
+                    <div class="subject-icon">
+                        📘
+                    </div>
 
-                    <p>
-                        ${getExamDescription(subject)}
-                    </p>
+
+                    <div class="subject-details">
+
+                        <h3>
+                            ${escapeHTML(
+                                subject.name
+                            )}
+                        </h3>
+
+                        <p>
+                            ${getExamDescription(
+                                subject
+                            )}
+                        </p>
+
+                    </div>
 
                 </div>
 
-            </div>
+
+                <div class="subject-result">
+
+                    <span class="subject-status">
+                        ${status}
+                    </span>
+
+                    <strong class="subject-score">
+                        ${subject.total || 0}
+                    </strong>
+
+                </div>
+
+            `;
 
 
-            <div class="subject-result">
+            subjectList.appendChild(
+                card
+            );
 
-                <strong>
-                    ${subject.total}
-                </strong>
-
-                <span>
-                    / 100
-                </span>
-
-            </div>
-
-        `;
-
-
-        subjectList.appendChild(card);
-
-    });
+        }
+    );
 
 }
 
 
 
-/* ========================================
-   EXAM DESCRIPTION
-======================================== */
+/* =========================================================
+   SUBJECT STATUS
+========================================================= */
 
-function getExamDescription(subject) {
+function getSubjectStatus(subject) {
+
+    const total =
+        Number(
+            subject.total || 0
+        );
+
+
+    if (
+        subject.exam20 !== null &&
+        subject.final80 !== null
+    ) {
+
+        if (total >= 50) {
+
+            return "Passed";
+
+        }
+
+        return "Failed";
+
+    }
+
+
+    return "In Progress";
+
+}
+
+
+
+/* =========================================================
+   EXAM DESCRIPTION
+========================================================= */
+
+function getExamDescription(
+    subject
+) {
 
     if (
         subject.exam20 !== null &&
@@ -484,22 +664,34 @@ function getExamDescription(subject) {
         return `
             20% Exam: ${subject.exam20}
             &nbsp; • &nbsp;
-            Final: ${subject.final80}
+            Final Exam: ${subject.final80}
         `;
 
     }
 
 
-    if (subject.exam20 !== null) {
+    if (
+        subject.exam20 !== null
+    ) {
 
-        return `20% Exam: ${subject.exam20}`;
+        return `
+            20% Exam: ${subject.exam20}
+            &nbsp; • &nbsp;
+            Final exam not entered
+        `;
 
     }
 
 
-    if (subject.final80 !== null) {
+    if (
+        subject.final80 !== null
+    ) {
 
-        return `Final Exam: ${subject.final80}`;
+        return `
+            Final Exam: ${subject.final80}
+            &nbsp; • &nbsp;
+            20% exam not entered
+        `;
 
     }
 
@@ -510,74 +702,94 @@ function getExamDescription(subject) {
 
 
 
-/* ========================================
+/* =========================================================
    ADD SUBJECT
-======================================== */
+========================================================= */
 
-addSubjectButton.addEventListener("click", () => {
+addSubjectButton.addEventListener(
+    "click",
+    () => {
 
-    showSubjectScreen();
+        showSubjectScreen();
 
-});
+    }
+);
 
 
 
-/* ========================================
+/* =========================================================
    EXAM TYPE
-======================================== */
+========================================================= */
 
-examType.addEventListener("change", () => {
+examType.addEventListener(
+    "change",
+    () => {
 
-    const selected =
-        examType.value;
+        const selected =
+            examType.value;
 
 
-    if (selected === "20") {
+        if (selected === "20") {
 
-        examMarks.max = "20";
+            examMarks.max =
+                "20";
 
-        examMarks.placeholder =
-            "Enter marks out of 20";
 
-        marksHint.textContent =
-            "Maximum: 20 marks";
+            examMarks.placeholder =
+                "Enter marks out of 20";
+
+
+            marksHint.textContent =
+                "Maximum: 20 marks";
+
+        }
+
+
+        else if (
+            selected === "80"
+        ) {
+
+            examMarks.max =
+                "80";
+
+
+            examMarks.placeholder =
+                "Enter marks out of 80";
+
+
+            marksHint.textContent =
+                "Maximum: 80 marks";
+
+        }
+
+
+        else {
+
+            examMarks.removeAttribute(
+                "max"
+            );
+
+
+            examMarks.placeholder =
+                "Enter your marks";
+
+
+            marksHint.textContent =
+                "Select an exam first";
+
+        }
+
+
+        updateMarksPreview();
 
     }
-
-    else if (selected === "80") {
-
-        examMarks.max = "80";
-
-        examMarks.placeholder =
-            "Enter marks out of 80";
-
-        marksHint.textContent =
-            "Maximum: 80 marks";
-
-    }
-
-    else {
-
-        examMarks.removeAttribute("max");
-
-        examMarks.placeholder =
-            "Enter your marks";
-
-        marksHint.textContent =
-            "Select an exam first";
-
-    }
-
-
-    updateMarksPreview();
-
-});
+);
 
 
 
-/* ========================================
+/* =========================================================
    MARKS PREVIEW
-======================================== */
+========================================================= */
 
 examMarks.addEventListener(
     "input",
@@ -592,12 +804,18 @@ function updateMarksPreview() {
 
 
     const marks =
-        Number(examMarks.value);
+        Number(
+            examMarks.value
+        );
 
 
-    if (!type || examMarks.value === "") {
+    if (
+        !type ||
+        examMarks.value === ""
+    ) {
 
-        totalPreview.textContent = "—";
+        totalPreview.textContent =
+            "—";
 
         return;
 
@@ -628,165 +846,175 @@ function updateMarksPreview() {
 
 
 
-/* ========================================
+/* =========================================================
    SAVE SUBJECT
-======================================== */
+========================================================= */
 
-subjectForm.addEventListener("submit", (event) => {
+subjectForm.addEventListener(
+    "submit",
+    (event) => {
 
-    event.preventDefault();
+        event.preventDefault();
 
 
-    if (!selectedSemester) {
+        if (!selectedSemester) {
 
-        return;
-
-    }
-
-
-    const name =
-        subjectName.value.trim();
-
-
-    const type =
-        examType.value;
-
-
-    const marks =
-        Number(examMarks.value);
-
-
-    if (!name) {
-
-        alert("Please enter the subject name.");
-
-        return;
-
-    }
-
-
-    if (!type) {
-
-        alert("Please select the exam.");
-
-        return;
-
-    }
-
-
-    const maximum =
-        Number(type);
-
-
-    if (
-        Number.isNaN(marks) ||
-        marks < 0 ||
-        marks > maximum
-    ) {
-
-        alert(
-            `Please enter a valid mark between 0 and ${maximum}.`
-        );
-
-        return;
-
-    }
-
-
-    let existingSubject =
-        subjects.find(
-            subject =>
-                subject.name.toLowerCase() ===
-                    name.toLowerCase() &&
-                subject.semester ===
-                    selectedSemester
-        );
-
-
-    if (!existingSubject) {
-
-        existingSubject = {
-
-            id: Date.now(),
-
-            name: name,
-
-            semester: selectedSemester,
-
-            exam20: null,
-
-            final80: null,
-
-            notes: ""
-
-        };
-
-
-        subjects.push(existingSubject);
-
-    }
-
-
-    if (type === "20") {
-
-        existingSubject.exam20 = marks;
-
-    }
-
-
-    if (type === "80") {
-
-        existingSubject.final80 = marks;
-
-    }
-
-
-    if (subjectNotes.value.trim()) {
-
-        existingSubject.notes =
-            subjectNotes.value.trim();
-
-    }
-
-
-    existingSubject.total =
-        Number(existingSubject.exam20 || 0) +
-        Number(existingSubject.final80 || 0);
-
-
-    localStorage.setItem(
-        "subjects",
-        JSON.stringify(subjects)
-    );
-
-
-    showSemesterScreen(selectedSemester);
-
-});
-
-
-
-/* ========================================
-   CANCEL / BACK
-======================================== */
-
-cancelSubjectButton.addEventListener(
-    "click",
-    () => {
-
-        if (selectedSemester) {
-
-            showSemesterScreen(selectedSemester);
-
-        } else {
-
-            showDashboard();
+            return;
 
         }
+
+
+        const name =
+            subjectName.value.trim();
+
+
+        const type =
+            examType.value;
+
+
+        const marks =
+            Number(
+                examMarks.value
+            );
+
+
+        if (!name) {
+
+            alert(
+                "Please enter the subject name."
+            );
+
+            return;
+
+        }
+
+
+        if (!type) {
+
+            alert(
+                "Please select the exam."
+            );
+
+            return;
+
+        }
+
+
+        const maximum =
+            Number(type);
+
+
+        if (
+            Number.isNaN(marks) ||
+            marks < 0 ||
+            marks > maximum
+        ) {
+
+            alert(
+                `Please enter a valid mark between 0 and ${maximum}.`
+            );
+
+            return;
+
+        }
+
+
+        let existingSubject =
+            subjects.find(
+                subject =>
+                    subject.name
+                        .toLowerCase() ===
+                    name.toLowerCase() &&
+
+                    subject.semester ===
+                    selectedSemester
+            );
+
+
+        if (!existingSubject) {
+
+            existingSubject = {
+
+                id: Date.now(),
+
+                name: name,
+
+                semester:
+                    selectedSemester,
+
+                exam20: null,
+
+                final80: null,
+
+                notes: "",
+
+                total: 0
+
+            };
+
+
+            subjects.push(
+                existingSubject
+            );
+
+        }
+
+
+        if (type === "20") {
+
+            existingSubject.exam20 =
+                marks;
+
+        }
+
+
+        if (type === "80") {
+
+            existingSubject.final80 =
+                marks;
+
+        }
+
+
+        if (
+            subjectNotes.value.trim()
+        ) {
+
+            existingSubject.notes =
+                subjectNotes.value.trim();
+
+        }
+
+
+        existingSubject.total =
+            Number(
+                existingSubject.exam20 || 0
+            ) +
+            Number(
+                existingSubject.final80 || 0
+            );
+
+
+        localStorage.setItem(
+            "subjects",
+            JSON.stringify(
+                subjects
+            )
+        );
+
+
+        showSemesterScreen(
+            selectedSemester
+        );
 
     }
 );
 
+
+
+/* =========================================================
+   BACK BUTTONS
+========================================================= */
 
 backToDashboardButton.addEventListener(
     "click",
@@ -798,22 +1026,110 @@ backToDashboardButton.addEventListener(
 );
 
 
+cancelSubjectButton.addEventListener(
+    "click",
+    () => {
 
-/* ========================================
+        if (selectedSemester) {
+
+            showSemesterScreen(
+                selectedSemester
+            );
+
+        } else {
+
+            showDashboard();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   PROFILE BUTTON
+========================================================= */
+
+profileButton.addEventListener(
+    "click",
+    () => {
+
+        if (!studentProfile) {
+
+            showSetup();
+
+            return;
+
+        }
+
+
+        showProfileSummary();
+
+    }
+);
+
+
+function showProfileSummary() {
+
+    const name =
+        `${studentProfile.firstName} ${studentProfile.lastName}`;
+
+
+    const message =
+
+        `Student Profile\n\n` +
+
+        `Name: ${name}\n` +
+
+        `Student ID: ${
+            studentProfile.studentId
+        }\n` +
+
+        `Faculty: ${
+            studentProfile.faculty
+        }\n` +
+
+        `Department: ${
+            studentProfile.department
+        }\n` +
+
+        `Academic Year: ${
+            studentProfile.academicYear
+        }\n` +
+
+        `Current Semester: ${
+            studentProfile.semester
+        }`;
+
+
+    alert(message);
+
+}
+
+
+
+/* =========================================================
    RESET SUBJECT FORM
-======================================== */
+========================================================= */
 
 function resetSubjectForm() {
 
     subjectForm.reset();
 
-    examMarks.removeAttribute("max");
+
+    examMarks.removeAttribute(
+        "max"
+    );
+
 
     examMarks.placeholder =
         "Enter your marks";
 
+
     marksHint.textContent =
         "Select an exam first";
+
 
     totalPreview.textContent =
         "—";
@@ -822,17 +1138,21 @@ function resetSubjectForm() {
 
 
 
-/* ========================================
+/* =========================================================
    HTML SAFETY
-======================================== */
+========================================================= */
 
 function escapeHTML(value) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
+
 
     div.textContent =
         value;
+
 
     return div.innerHTML;
 
