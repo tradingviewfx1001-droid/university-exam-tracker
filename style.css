@@ -1062,3 +1062,75 @@ textarea {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================
+   FIX PROFILE PHOTO SIZE
+   ========================================= */
+
+#profilePhotoPreview {
+    width: 140px !important;
+    height: 140px !important;
+    max-width: 140px !important;
+    max-height: 140px !important;
+    min-width: 140px !important;
+    min-height: 140px !important;
+
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+}
+
+#profilePhotoPreview img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Dashboard profile photo */
+#dashboardProfilePhoto {
+    width: 90px !important;
+    height: 90px !important;
+    max-width: 90px !important;
+    max-height: 90px !important;
+    min-width: 90px !important;
+    min-height: 90px !important;
+
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#dashboardProfilePhoto img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Header profile photo */
+#headerProfilePhoto {
+    width: 44px !important;
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+#headerProfilePhoto img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
