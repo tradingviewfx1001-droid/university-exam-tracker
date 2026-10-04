@@ -1,0 +1,473 @@
+/* ==============================
+   University Exam Tracker
+   Main Styles
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --background: #f5f7fb;
+    --card: #ffffff;
+    --text: #172033;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+/* ==============================
+   General
+================================= */
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    min-height: 100vh;
+}
+
+
+/* ==============================
+   Setup Screen
+================================= */
+
+#setupScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 16px;
+}
+
+.setup-container {
+    width: 100%;
+    max-width: 520px;
+
+    background: var(--card);
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.07);
+}
+
+.app-logo {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #eef2ff;
+
+    border-radius: 20px;
+
+    font-size: 34px;
+}
+
+.setup-container h1 {
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+
+    color: var(--muted);
+
+    margin-bottom: 30px;
+}
+
+
+/* ==============================
+   Form
+================================= */
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #fafafa;
+
+    color: var(--text);
+
+    transition: 0.2s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--primary);
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.10);
+}
+
+
+/* ==============================
+   Buttons
+================================= */
+
+.primary-button {
+    width: 100%;
+
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 14px 18px;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+.primary-button:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+}
+
+.primary-button:active {
+    transform: translateY(0);
+}
+
+
+/* ==============================
+   Dashboard Header
+================================= */
+
+.dashboard-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 25px 20px;
+}
+
+.welcome-text {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+.dashboard-header h1 {
+    font-size: 28px;
+}
+
+.icon-button {
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 50%;
+
+    font-size: 18px;
+}
+
+
+/* ==============================
+   Dashboard
+================================= */
+
+.dashboard {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 0 20px 40px;
+}
+
+.dashboard h2 {
+    font-size: 20px;
+
+    margin: 28px 0 14px;
+}
+
+
+/* ==============================
+   Student Information
+================================= */
+
+.student-info-card {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    background: var(--card);
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--border);
+}
+
+.student-info-card div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.student-info-card span {
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.student-info-card strong {
+    font-size: 15px;
+}
+
+
+/* ==============================
+   Statistics
+================================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+}
+
+.stat-card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 20px;
+}
+
+.stat-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.stat-card strong {
+    font-size: 28px;
+}
+
+.stat-card small {
+    color: var(--muted);
+}
+
+
+/* ==============================
+   Semester Progress
+================================= */
+
+.semester-progress {
+    display: grid;
+
+    gap: 12px;
+}
+
+.semester-item {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    padding: 15px 18px;
+
+    border-radius: 15px;
+}
+
+.semester-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+}
+
+.semester-name {
+    font-weight: 600;
+}
+
+.semester-average {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.progress-bar {
+    height: 8px;
+
+    background: #e5e7eb;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+
+    background: var(--primary);
+
+    border-radius: 20px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* ==============================
+   Responsive / Mobile
+================================= */
+
+@media (max-width: 700px) {
+
+    #setupScreen {
+        align-items: flex-start;
+
+        padding-top: 20px;
+    }
+
+    .setup-container {
+        padding: 25px 20px;
+
+        border-radius: 20px;
+    }
+
+    .setup-container h1 {
+        font-size: 24px;
+    }
+
+    .dashboard-header {
+        padding: 20px 16px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 24px;
+    }
+
+    .dashboard {
+        padding: 0 16px 30px;
+    }
+
+    .student-info-card {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-card strong {
+        font-size: 24px;
+    }
+}
+
+
+/* ==============================
+   Small Phones
+================================= */
+
+@media (max-width: 400px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .setup-container {
+        padding: 22px 16px;
+    }
+}
