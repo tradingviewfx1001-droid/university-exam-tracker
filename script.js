@@ -1,6 +1,6 @@
 /* =========================================================
    UNIVERSITY EXAM TRACKER
-   Main Application Logic
+   Application Logic
 ========================================================= */
 
 
@@ -20,9 +20,17 @@ const semesterScreen =
 const subjectScreen =
     document.getElementById("subjectScreen");
 
+const profileScreen =
+    document.getElementById("profileScreen");
+
+
+/* Setup */
 
 const setupForm =
     document.getElementById("setupForm");
+
+
+/* Dashboard */
 
 const studentName =
     document.getElementById("studentName");
@@ -39,13 +47,23 @@ const studentIdDisplay =
 const currentSemesterDisplay =
     document.getElementById("currentSemesterDisplay");
 
-
 const overallAverage =
     document.getElementById("overallAverage");
 
 const semesterProgress =
     document.getElementById("semesterProgress");
 
+const profileButton =
+    document.getElementById("profileButton");
+
+const dashboardProfilePhoto =
+    document.getElementById("dashboardProfilePhoto");
+
+const headerProfilePhoto =
+    document.getElementById("headerProfilePhoto");
+
+
+/* Semester */
 
 const semesterTitle =
     document.getElementById("semesterTitle");
@@ -56,41 +74,136 @@ const semesterAverage =
 const subjectList =
     document.getElementById("subjectList");
 
-
 const backToDashboardButton =
-    document.getElementById("backToDashboardButton");
+    document.getElementById(
+        "backToDashboardButton"
+    );
 
 const addSubjectButton =
-    document.getElementById("addSubjectButton");
+    document.getElementById(
+        "addSubjectButton"
+    );
+
+
+/* Subject */
 
 const cancelSubjectButton =
-    document.getElementById("cancelSubjectButton");
-
-const profileButton =
-    document.getElementById("profileButton");
-
+    document.getElementById(
+        "cancelSubjectButton"
+    );
 
 const subjectForm =
-    document.getElementById("subjectForm");
+    document.getElementById(
+        "subjectForm"
+    );
+
+const subjectFormTitle =
+    document.getElementById(
+        "subjectFormTitle"
+    );
+
+const subjectFormDescription =
+    document.getElementById(
+        "subjectFormDescription"
+    );
+
+const subjectSaveText =
+    document.getElementById(
+        "subjectSaveText"
+    );
 
 const subjectName =
-    document.getElementById("subjectName");
+    document.getElementById(
+        "subjectName"
+    );
 
 const examType =
-    document.getElementById("examType");
+    document.getElementById(
+        "examType"
+    );
 
 const examMarks =
-    document.getElementById("examMarks");
+    document.getElementById(
+        "examMarks"
+    );
 
 const marksHint =
-    document.getElementById("marksHint");
+    document.getElementById(
+        "marksHint"
+    );
 
 const totalPreview =
-    document.getElementById("totalPreview");
+    document.getElementById(
+        "totalPreview"
+    );
 
 const subjectNotes =
-    document.getElementById("subjectNotes");
+    document.getElementById(
+        "subjectNotes"
+    );
 
+
+/* Profile */
+
+const backFromProfileButton =
+    document.getElementById(
+        "backFromProfileButton"
+    );
+
+const profileForm =
+    document.getElementById(
+        "profileForm"
+    );
+
+const profileFirstName =
+    document.getElementById(
+        "profileFirstName"
+    );
+
+const profileLastName =
+    document.getElementById(
+        "profileLastName"
+    );
+
+const profileStudentId =
+    document.getElementById(
+        "profileStudentId"
+    );
+
+const profileFaculty =
+    document.getElementById(
+        "profileFaculty"
+    );
+
+const profileDepartment =
+    document.getElementById(
+        "profileDepartment"
+    );
+
+const profileAcademicYear =
+    document.getElementById(
+        "profileAcademicYear"
+    );
+
+const profileCurrentSemester =
+    document.getElementById(
+        "profileCurrentSemester"
+    );
+
+const profilePhotoInput =
+    document.getElementById(
+        "profilePhotoInput"
+    );
+
+const profilePhotoPreview =
+    document.getElementById(
+        "profilePhotoPreview"
+    );
+
+const removeProfilePhotoButton =
+    document.getElementById(
+        "removeProfilePhotoButton"
+    );
 
 
 /* =========================================================
@@ -99,38 +212,51 @@ const subjectNotes =
 
 let studentProfile =
     JSON.parse(
-        localStorage.getItem("studentProfile")
+        localStorage.getItem(
+            "studentProfile"
+        )
     ) || null;
 
 
 let subjects =
     JSON.parse(
-        localStorage.getItem("subjects")
+        localStorage.getItem(
+            "subjects"
+        )
     ) || [];
+
+
+let profilePhoto =
+    localStorage.getItem(
+        "profilePhoto"
+    ) || "";
 
 
 let selectedSemester = null;
 
+let editingSubjectId = null;
 
 
 /* =========================================================
-   INITIALIZE
+   INITIALIZATION
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    if (studentProfile) {
+        if (studentProfile) {
 
-        showDashboard();
+            showDashboard();
 
-    } else {
+        } else {
 
-        showSetup();
+            showSetup();
+
+        }
 
     }
-
-});
-
+);
 
 
 /* =========================================================
@@ -139,13 +265,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function hideAllScreens() {
 
-    setupScreen.classList.add("hidden");
+    setupScreen.classList.add(
+        "hidden"
+    );
 
-    dashboardScreen.classList.add("hidden");
+    dashboardScreen.classList.add(
+        "hidden"
+    );
 
-    semesterScreen.classList.add("hidden");
+    semesterScreen.classList.add(
+        "hidden"
+    );
 
-    subjectScreen.classList.add("hidden");
+    subjectScreen.classList.add(
+        "hidden"
+    );
+
+    profileScreen.classList.add(
+        "hidden"
+    );
 
 }
 
@@ -154,7 +292,9 @@ function showSetup() {
 
     hideAllScreens();
 
-    setupScreen.classList.remove("hidden");
+    setupScreen.classList.remove(
+        "hidden"
+    );
 
 }
 
@@ -163,9 +303,13 @@ function showDashboard() {
 
     hideAllScreens();
 
-    dashboardScreen.classList.remove("hidden");
+    dashboardScreen.classList.remove(
+        "hidden"
+    );
 
     loadStudentProfile();
+
+    updateProfilePhotoUI();
 
     updateOverallAverage();
 
@@ -174,102 +318,193 @@ function showDashboard() {
 }
 
 
-function showSemesterScreen(semester) {
+function showSemesterScreen(
+    semester
+) {
 
-    selectedSemester = semester;
+    selectedSemester =
+        semester;
 
     hideAllScreens();
 
-    semesterScreen.classList.remove("hidden");
+    semesterScreen.classList.remove(
+        "hidden"
+    );
 
-    semesterTitle.textContent = semester;
+    semesterTitle.textContent =
+        semester;
 
     updateSemesterPage();
 
 }
 
 
-function showSubjectScreen() {
+function showSubjectScreen(
+    subject = null
+) {
 
     hideAllScreens();
 
-    subjectScreen.classList.remove("hidden");
+    subjectScreen.classList.remove(
+        "hidden"
+    );
+
+
+    editingSubjectId =
+        subject
+            ? subject.id
+            : null;
+
 
     resetSubjectForm();
+
+
+    if (subject) {
+
+        subjectFormTitle.textContent =
+            "Edit Subject";
+
+        subjectFormDescription.textContent =
+            "Update the examination result for this subject.";
+
+        subjectSaveText.textContent =
+            "Update Subject";
+
+
+        subjectName.value =
+            subject.name;
+
+
+        subjectNotes.value =
+            subject.notes || "";
+
+
+        /*
+         * IMPORTANT:
+         * Load the existing exam marks
+         * when editing a subject.
+         */
+        prepareSubjectEdit(subject);
+
+
+    } else {
+
+        subjectFormTitle.textContent =
+            "Add Subject";
+
+        subjectFormDescription.textContent =
+            "Enter the examination result you want to record.";
+
+        subjectSaveText.textContent =
+            "Save Subject";
+
+    }
 
 }
 
 
+function showProfileScreen() {
 
-/* =========================================================
-   STUDENT PROFILE
-========================================================= */
+    hideAllScreens();
 
-setupForm.addEventListener("submit", (event) => {
-
-    event.preventDefault();
-
-
-    studentProfile = {
-
-        firstName:
-            document
-                .getElementById("firstName")
-                .value
-                .trim(),
-
-        lastName:
-            document
-                .getElementById("lastName")
-                .value
-                .trim(),
-
-        studentId:
-            document
-                .getElementById("studentId")
-                .value
-                .trim(),
-
-        faculty:
-            document
-                .getElementById("faculty")
-                .value
-                .trim(),
-
-        department:
-            document
-                .getElementById("department")
-                .value
-                .trim(),
-
-        academicYear:
-            document
-                .getElementById("academicYear")
-                .value
-                .trim(),
-
-        semester:
-            document
-                .getElementById("currentSemester")
-                .value
-
-    };
-
-
-    localStorage.setItem(
-        "studentProfile",
-        JSON.stringify(studentProfile)
+    profileScreen.classList.remove(
+        "hidden"
     );
 
+    loadProfileForm();
 
-    showDashboard();
+}
 
-});
 
+/* =========================================================
+   SETUP PROFILE
+========================================================= */
+
+setupForm.addEventListener(
+    "submit",
+    (event) => {
+
+        event.preventDefault();
+
+
+        studentProfile = {
+
+            firstName:
+                document
+                    .getElementById(
+                        "firstName"
+                    )
+                    .value
+                    .trim(),
+
+            lastName:
+                document
+                    .getElementById(
+                        "lastName"
+                    )
+                    .value
+                    .trim(),
+
+            studentId:
+                document
+                    .getElementById(
+                        "studentId"
+                    )
+                    .value
+                    .trim(),
+
+            faculty:
+                document
+                    .getElementById(
+                        "faculty"
+                    )
+                    .value
+                    .trim(),
+
+            department:
+                document
+                    .getElementById(
+                        "department"
+                    )
+                    .value
+                    .trim(),
+
+            academicYear:
+                document
+                    .getElementById(
+                        "academicYear"
+                    )
+                    .value
+                    .trim(),
+
+            semester:
+                document
+                    .getElementById(
+                        "currentSemester"
+                    )
+                    .value
+
+        };
+
+
+        saveProfile();
+
+
+        showDashboard();
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE DISPLAY
+========================================================= */
 
 function loadStudentProfile() {
 
-    if (!studentProfile) return;
+    if (!studentProfile) {
+        return;
+    }
 
 
     const fullName =
@@ -277,7 +512,8 @@ function loadStudentProfile() {
 
 
     studentName.textContent =
-        fullName;
+        studentProfile.firstName ||
+        "Student";
 
 
     studentFullName.textContent =
@@ -285,11 +521,13 @@ function loadStudentProfile() {
 
 
     studentFaculty.textContent =
-        studentProfile.faculty || "Faculty";
+        studentProfile.faculty ||
+        "Faculty";
 
 
     studentIdDisplay.textContent =
-        studentProfile.studentId || "—";
+        studentProfile.studentId ||
+        "—";
 
 
     currentSemesterDisplay.textContent =
@@ -300,6 +538,264 @@ function loadStudentProfile() {
 }
 
 
+function saveProfile() {
+
+    localStorage.setItem(
+        "studentProfile",
+        JSON.stringify(
+            studentProfile
+        )
+    );
+
+}
+
+
+/* =========================================================
+   PROFILE EDITING
+========================================================= */
+
+profileButton.addEventListener(
+    "click",
+    () => {
+
+        showProfileScreen();
+
+    }
+);
+
+
+function loadProfileForm() {
+
+    if (!studentProfile) {
+        return;
+    }
+
+
+    profileFirstName.value =
+        studentProfile.firstName || "";
+
+
+    profileLastName.value =
+        studentProfile.lastName || "";
+
+
+    profileStudentId.value =
+        studentProfile.studentId || "";
+
+
+    profileFaculty.value =
+        studentProfile.faculty || "";
+
+
+    profileDepartment.value =
+        studentProfile.department || "";
+
+
+    profileAcademicYear.value =
+        studentProfile.academicYear || "";
+
+
+    profileCurrentSemester.value =
+        studentProfile.semester || "1";
+
+
+    updateProfilePhotoPreview();
+
+}
+
+
+profileForm.addEventListener(
+    "submit",
+    (event) => {
+
+        event.preventDefault();
+
+
+        studentProfile = {
+
+            firstName:
+                profileFirstName.value.trim(),
+
+            lastName:
+                profileLastName.value.trim(),
+
+            studentId:
+                profileStudentId.value.trim(),
+
+            faculty:
+                profileFaculty.value.trim(),
+
+            department:
+                profileDepartment.value.trim(),
+
+            academicYear:
+                profileAcademicYear.value.trim(),
+
+            semester:
+                profileCurrentSemester.value
+
+        };
+
+
+        saveProfile();
+
+
+        showDashboard();
+
+    }
+);
+
+
+backFromProfileButton.addEventListener(
+    "click",
+    () => {
+
+        showDashboard();
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE PHOTO
+========================================================= */
+
+profilePhotoInput.addEventListener(
+    "change",
+    (event) => {
+
+        const file =
+            event.target.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.type.startsWith(
+                "image/"
+            )
+        ) {
+
+            alert(
+                "Please select an image file."
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function () {
+
+                profilePhoto =
+                    reader.result;
+
+
+                localStorage.setItem(
+                    "profilePhoto",
+                    profilePhoto
+                );
+
+
+                updateProfilePhotoUI();
+
+                updateProfilePhotoPreview();
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
+);
+
+
+removeProfilePhotoButton.addEventListener(
+    "click",
+    () => {
+
+        profilePhoto = "";
+
+        localStorage.removeItem(
+            "profilePhoto"
+        );
+
+
+        profilePhotoInput.value =
+            "";
+
+
+        updateProfilePhotoUI();
+
+        updateProfilePhotoPreview();
+
+    }
+);
+
+
+function updateProfilePhotoUI() {
+
+    if (profilePhoto) {
+
+        dashboardProfilePhoto.innerHTML = `
+            <img
+                src="${profilePhoto}"
+                alt="Profile photo"
+            >
+        `;
+
+
+        headerProfilePhoto.innerHTML = `
+            <img
+                src="${profilePhoto}"
+                alt="Profile photo"
+            >
+        `;
+
+    } else {
+
+        dashboardProfilePhoto.textContent =
+            "👤";
+
+
+        headerProfilePhoto.textContent =
+            "👤";
+
+    }
+
+}
+
+
+function updateProfilePhotoPreview() {
+
+    if (profilePhoto) {
+
+        profilePhotoPreview.innerHTML = `
+            <img
+                src="${profilePhoto}"
+                alt="Profile photo"
+            >
+        `;
+
+    } else {
+
+        profilePhotoPreview.textContent =
+            "👤";
+
+    }
+
+}
+
 
 /* =========================================================
    SEMESTER LIST
@@ -307,10 +803,15 @@ function loadStudentProfile() {
 
 function createSemesterList() {
 
-    semesterProgress.innerHTML = "";
+    semesterProgress.innerHTML =
+        "";
 
 
-    for (let i = 1; i <= 8; i++) {
+    for (
+        let i = 1;
+        i <= 8;
+        i++
+    ) {
 
         const semester =
             `Semester ${i}`;
@@ -319,7 +820,8 @@ function createSemesterList() {
         const semesterSubjects =
             subjects.filter(
                 subject =>
-                    subject.semester === semester
+                    subject.semester ===
+                    semester
             );
 
 
@@ -334,10 +836,14 @@ function createSemesterList() {
 
 
         const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
 
-        button.type = "button";
+        button.type =
+            "button";
+
 
         button.className =
             "semester-item";
@@ -348,7 +854,6 @@ function createSemesterList() {
             <div class="semester-number">
                 ${i}
             </div>
-
 
             <div class="semester-info">
 
@@ -370,7 +875,6 @@ function createSemesterList() {
 
             </div>
 
-
             <div class="semester-progress">
 
                 <div class="semester-progress-bar">
@@ -388,11 +892,9 @@ function createSemesterList() {
 
             </div>
 
-
             <div class="semester-average">
                 ${average}%
             </div>
-
 
             <div class="semester-arrow">
                 →
@@ -422,14 +924,17 @@ function createSemesterList() {
 }
 
 
-
 /* =========================================================
    AVERAGES
 ========================================================= */
 
-function calculateAverage(subjectArray) {
+function calculateAverage(
+    subjectArray
+) {
 
-    if (!subjectArray.length) {
+    if (
+        !subjectArray.length
+    ) {
 
         return 0;
 
@@ -438,7 +943,10 @@ function calculateAverage(subjectArray) {
 
     const total =
         subjectArray.reduce(
-            (sum, subject) => {
+            (
+                sum,
+                subject
+            ) => {
 
                 return sum +
                     Number(
@@ -451,7 +959,8 @@ function calculateAverage(subjectArray) {
 
 
     return Math.round(
-        total / subjectArray.length
+        total /
+        subjectArray.length
     );
 
 }
@@ -460,14 +969,15 @@ function calculateAverage(subjectArray) {
 function updateOverallAverage() {
 
     const average =
-        calculateAverage(subjects);
+        calculateAverage(
+            subjects
+        );
 
 
     overallAverage.textContent =
         `${average}%`;
 
 }
-
 
 
 /* =========================================================
@@ -501,7 +1011,6 @@ function updateSemesterPage() {
 }
 
 
-
 /* =========================================================
    SUBJECT LIST
 ========================================================= */
@@ -510,10 +1019,13 @@ function renderSubjects(
     semesterSubjects
 ) {
 
-    subjectList.innerHTML = "";
+    subjectList.innerHTML =
+        "";
 
 
-    if (!semesterSubjects.length) {
+    if (
+        !semesterSubjects.length
+    ) {
 
         subjectList.innerHTML = `
 
@@ -568,7 +1080,6 @@ function renderSubjects(
                         📘
                     </div>
 
-
                     <div class="subject-details">
 
                         <h3>
@@ -598,9 +1109,53 @@ function renderSubjects(
                         ${subject.total || 0}
                     </strong>
 
+
+                    <button
+                        type="button"
+                        class="subject-edit-button"
+                        data-id="${subject.id}"
+                    >
+                        Edit
+                    </button>
+
                 </div>
 
             `;
+
+
+            const editButton =
+                card.querySelector(
+                    ".subject-edit-button"
+                );
+
+
+            editButton.addEventListener(
+                "click",
+                (event) => {
+
+                    event.stopPropagation();
+
+
+                    const subjectToEdit =
+                        subjects.find(
+                            item =>
+                                item.id ===
+                                subject.id
+                        );
+
+
+                    if (
+                        subjectToEdit
+                    ) {
+
+                        showSubjectScreen(
+                            subjectToEdit
+                        );
+
+                    }
+
+                }
+            );
 
 
             subjectList.appendChild(
@@ -613,12 +1168,13 @@ function renderSubjects(
 }
 
 
-
 /* =========================================================
    SUBJECT STATUS
 ========================================================= */
 
-function getSubjectStatus(subject) {
+function getSubjectStatus(
+    subject
+) {
 
     const total =
         Number(
@@ -631,13 +1187,9 @@ function getSubjectStatus(subject) {
         subject.final80 !== null
     ) {
 
-        if (total >= 50) {
-
-            return "Passed";
-
-        }
-
-        return "Failed";
+        return total >= 50
+            ? "Passed"
+            : "Failed";
 
     }
 
@@ -645,7 +1197,6 @@ function getSubjectStatus(subject) {
     return "In Progress";
 
 }
-
 
 
 /* =========================================================
@@ -701,7 +1252,6 @@ function getExamDescription(
 }
 
 
-
 /* =========================================================
    ADD SUBJECT
 ========================================================= */
@@ -716,7 +1266,6 @@ addSubjectButton.addEventListener(
 );
 
 
-
 /* =========================================================
    EXAM TYPE
 ========================================================= */
@@ -725,11 +1274,13 @@ examType.addEventListener(
     "change",
     () => {
 
-        const selected =
+        const type =
             examType.value;
 
 
-        if (selected === "20") {
+        if (
+            type === "20"
+        ) {
 
             examMarks.max =
                 "20";
@@ -746,7 +1297,7 @@ examType.addEventListener(
 
 
         else if (
-            selected === "80"
+            type === "80"
         ) {
 
             examMarks.max =
@@ -784,7 +1335,6 @@ examType.addEventListener(
 
     }
 );
-
 
 
 /* =========================================================
@@ -845,9 +1395,8 @@ function updateMarksPreview() {
 }
 
 
-
 /* =========================================================
-   SAVE SUBJECT
+   SAVE / UPDATE SUBJECT
 ========================================================= */
 
 subjectForm.addEventListener(
@@ -857,7 +1406,9 @@ subjectForm.addEventListener(
         event.preventDefault();
 
 
-        if (!selectedSemester) {
+        if (
+            !selectedSemester
+        ) {
 
             return;
 
@@ -919,21 +1470,66 @@ subjectForm.addEventListener(
         }
 
 
-        let existingSubject =
-            subjects.find(
-                subject =>
-                    subject.name
-                        .toLowerCase() ===
-                    name.toLowerCase() &&
-
-                    subject.semester ===
-                    selectedSemester
-            );
+        let subject;
 
 
-        if (!existingSubject) {
+        /*
+         * EDIT EXISTING SUBJECT
+         */
 
-            existingSubject = {
+        if (
+            editingSubjectId !== null
+        ) {
+
+            subject =
+                subjects.find(
+                    item =>
+                        item.id ===
+                        editingSubjectId
+                );
+
+        }
+
+
+        /*
+         * IF NOT EDITING, FIND AN EXISTING
+         * SUBJECT WITH THE SAME NAME.
+         *
+         * This allows:
+         *
+         * Computer Networks
+         * → 20% Exam
+         *
+         * then later:
+         *
+         * Computer Networks
+         * → Final Exam
+         */
+
+        if (!subject) {
+
+            subject =
+                subjects.find(
+                    item =>
+
+                        item.name
+                            .toLowerCase() ===
+                        name.toLowerCase() &&
+
+                        item.semester ===
+                        selectedSemester
+                );
+
+        }
+
+
+        /*
+         * CREATE NEW SUBJECT
+         */
+
+        if (!subject) {
+
+            subject = {
 
                 id: Date.now(),
 
@@ -954,44 +1550,69 @@ subjectForm.addEventListener(
 
 
             subjects.push(
-                existingSubject
+                subject
             );
 
         }
 
 
-        if (type === "20") {
+        /*
+         * Keep the latest subject name.
+         */
 
-            existingSubject.exam20 =
-                marks;
-
-        }
+        subject.name =
+            name;
 
 
-        if (type === "80") {
+        /*
+         * Save selected examination.
+         */
 
-            existingSubject.final80 =
+        if (
+            type === "20"
+        ) {
+
+            subject.exam20 =
                 marks;
 
         }
 
 
         if (
-            subjectNotes.value.trim()
+            type === "80"
         ) {
 
-            existingSubject.notes =
-                subjectNotes.value.trim();
+            subject.final80 =
+                marks;
 
         }
 
 
-        existingSubject.total =
+        /*
+         * Save notes if entered.
+         */
+
+        subject.notes =
+            subjectNotes.value.trim();
+
+
+        /*
+         * Calculate total.
+         *
+         * Example:
+         *
+         * 20% Exam = 16
+         * Final = 64
+         *
+         * Total = 80
+         */
+
+        subject.total =
             Number(
-                existingSubject.exam20 || 0
+                subject.exam20 || 0
             ) +
             Number(
-                existingSubject.final80 || 0
+                subject.final80 || 0
             );
 
 
@@ -1003,6 +1624,10 @@ subjectForm.addEventListener(
         );
 
 
+        editingSubjectId =
+            null;
+
+
         showSemesterScreen(
             selectedSemester
         );
@@ -1010,6 +1635,135 @@ subjectForm.addEventListener(
     }
 );
 
+
+/* =========================================================
+   EDIT SUBJECT — PRELOAD EXAM DATA
+========================================================= */
+
+function prepareSubjectEdit(
+    subject
+) {
+
+    subjectName.value =
+        subject.name;
+
+
+    subjectNotes.value =
+        subject.notes || "";
+
+
+    /*
+     * If only the 20% exam exists,
+     * preload it.
+     */
+
+    if (
+        subject.exam20 !== null &&
+        subject.final80 === null
+    ) {
+
+        examType.value =
+            "20";
+
+        examMarks.value =
+            subject.exam20;
+
+        updateExamInput();
+
+    }
+
+
+    /*
+     * If only the final exists,
+     * preload it.
+     */
+
+    else if (
+        subject.exam20 === null &&
+        subject.final80 !== null
+    ) {
+
+        examType.value =
+            "80";
+
+        examMarks.value =
+            subject.final80;
+
+        updateExamInput();
+
+    }
+
+
+    /*
+     * If both exist, leave the
+     * exam selector empty so the
+     * user chooses which one to edit.
+     */
+
+    else {
+
+        examType.value =
+            "";
+
+        examMarks.value =
+            "";
+
+        marksHint.textContent =
+            "Select the exam you want to edit.";
+
+        totalPreview.textContent =
+            `${subject.total || 0} total`;
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE EXAM INPUT
+========================================================= */
+
+function updateExamInput() {
+
+    const type =
+        examType.value;
+
+
+    if (
+        type === "20"
+    ) {
+
+        examMarks.max =
+            "20";
+
+        examMarks.placeholder =
+            "Enter marks out of 20";
+
+        marksHint.textContent =
+            "Maximum: 20 marks";
+
+    }
+
+
+    else if (
+        type === "80"
+    ) {
+
+        examMarks.max =
+            "80";
+
+        examMarks.placeholder =
+            "Enter marks out of 80";
+
+        marksHint.textContent =
+            "Maximum: 80 marks";
+
+    }
+
+
+    updateMarksPreview();
+
+}
 
 
 /* =========================================================
@@ -1030,7 +1784,9 @@ cancelSubjectButton.addEventListener(
     "click",
     () => {
 
-        if (selectedSemester) {
+        if (
+            selectedSemester
+        ) {
 
             showSemesterScreen(
                 selectedSemester
@@ -1044,69 +1800,6 @@ cancelSubjectButton.addEventListener(
 
     }
 );
-
-
-
-/* =========================================================
-   PROFILE BUTTON
-========================================================= */
-
-profileButton.addEventListener(
-    "click",
-    () => {
-
-        if (!studentProfile) {
-
-            showSetup();
-
-            return;
-
-        }
-
-
-        showProfileSummary();
-
-    }
-);
-
-
-function showProfileSummary() {
-
-    const name =
-        `${studentProfile.firstName} ${studentProfile.lastName}`;
-
-
-    const message =
-
-        `Student Profile\n\n` +
-
-        `Name: ${name}\n` +
-
-        `Student ID: ${
-            studentProfile.studentId
-        }\n` +
-
-        `Faculty: ${
-            studentProfile.faculty
-        }\n` +
-
-        `Department: ${
-            studentProfile.department
-        }\n` +
-
-        `Academic Year: ${
-            studentProfile.academicYear
-        }\n` +
-
-        `Current Semester: ${
-            studentProfile.semester
-        }`;
-
-
-    alert(message);
-
-}
-
 
 
 /* =========================================================
@@ -1137,12 +1830,13 @@ function resetSubjectForm() {
 }
 
 
-
 /* =========================================================
-   HTML SAFETY
+   ESCAPE HTML
 ========================================================= */
 
-function escapeHTML(value) {
+function escapeHTML(
+    value
+) {
 
     const div =
         document.createElement(
