@@ -1,593 +1,1337 @@
-/* ==============================
-   University Exam Tracker
-   Main Styles
-================================= */
+/* ========================================
+   UNIVERSITY EXAM TRACKER
+   Modern Light Academic Design
+======================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
+/* ========================================
+   ROOT
+======================================== */
 
 :root {
+
     --primary: #4f46e5;
-    --primary-dark: #4338ca;
-    --background: #f5f7fb;
+    --primary-light: #eef2ff;
+    --primary-soft: #f5f3ff;
+
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+
+    --orange: #ea580c;
+    --orange-light: #fff7ed;
+
+    --background: #f6f8fc;
     --card: #ffffff;
+
     --text: #172033;
-    --muted: #6b7280;
-    --border: #e5e7eb;
-    --success: #16a34a;
-    --danger: #dc2626;
+    --text-light: #667085;
+
+    --border: #e6eaf2;
+
+    --shadow:
+        0 8px 30px rgba(31, 41, 55, 0.06);
+
+    --shadow-hover:
+        0 14px 35px rgba(31, 41, 55, 0.10);
+
+    --radius: 20px;
+
 }
 
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
 body {
+
     font-family:
+        Inter,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        Roboto,
-        Arial,
         sans-serif;
 
     background: var(--background);
+
     color: var(--text);
 
     min-height: 100vh;
+
 }
 
 
-/* ==============================
-   General
-================================= */
+/* ========================================
+   GENERAL
+======================================== */
 
 button,
 input,
-select {
+select,
+textarea {
     font: inherit;
 }
+
 
 button {
     cursor: pointer;
 }
 
+
 .hidden {
     display: none !important;
 }
+
 
 .screen {
     min-height: 100vh;
 }
 
 
-/* ==============================
-   Setup Screen
-================================= */
+/* ========================================
+   SETUP SCREEN
+======================================== */
 
 #setupScreen {
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
-    padding: 30px 16px;
+    padding: 40px 20px;
+
 }
 
+
 .setup-container {
+
     width: 100%;
-    max-width: 520px;
+
+    max-width: 500px;
 
     background: var(--card);
 
-    padding: 35px;
+    border: 1px solid var(--border);
 
-    border-radius: 24px;
+    border-radius: 28px;
 
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.07);
+    padding: 38px;
+
+    box-shadow: var(--shadow);
+
 }
 
+
+/* ========================================
+   LOGO
+======================================== */
+
 .app-logo {
-    width: 70px;
-    height: 70px;
+
+    width: 68px;
+
+    height: 68px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     margin: 0 auto 20px;
 
-    background: #eef2ff;
-
     border-radius: 20px;
 
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #e0e7ff
+        );
+
     font-size: 34px;
+
 }
+
+
+/* ========================================
+   HEADINGS
+======================================== */
 
 .setup-container h1 {
+
     text-align: center;
 
-    font-size: 28px;
+    font-size: 30px;
 
-    margin-bottom: 8px;
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
 }
+
 
 .subtitle {
+
     text-align: center;
 
-    color: var(--muted);
+    color: var(--text-light);
+
+    font-size: 15px;
 
     margin-bottom: 30px;
+
 }
 
 
-/* ==============================
-   Form
-================================= */
+/* ========================================
+   FORM
+======================================== */
 
 .input-group {
-    margin-bottom: 18px;
+
+    margin-bottom: 20px;
+
 }
 
+
 .input-group label {
+
     display: block;
 
     font-size: 14px;
 
     font-weight: 600;
 
-    margin-bottom: 7px;
+    margin-bottom: 8px;
+
 }
 
-.input-group input,
-.input-group select {
-    width: 100%;
 
-    padding: 13px 14px;
+.input-group input,
+.input-group select,
+.input-group textarea {
+
+    width: 100%;
 
     border: 1px solid var(--border);
 
-    border-radius: 12px;
+    background: #fbfcff;
 
-    outline: none;
+    border-radius: 13px;
 
-    background: #fafafa;
+    padding: 13px 14px;
 
     color: var(--text);
 
-    transition: 0.2s;
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+
 }
+
 
 .input-group input:focus,
-.input-group select:focus {
+.input-group select:focus,
+.input-group textarea:focus {
+
+    background: #ffffff;
+
     border-color: var(--primary);
 
-    background: white;
-
     box-shadow:
-        0 0 0 3px rgba(79, 70, 229, 0.10);
+        0 0 0 4px
+        rgba(79, 70, 229, 0.10);
+
 }
 
 
-/* ==============================
-   Buttons
-================================= */
+.input-group textarea {
+
+    resize: vertical;
+
+    min-height: 100px;
+
+}
+
+
+.input-group small {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   PRIMARY BUTTON
+======================================== */
 
 .primary-button {
+
     width: 100%;
 
     border: none;
+
+    border-radius: 14px;
+
+    padding: 14px 18px;
 
     background: var(--primary);
 
     color: white;
 
-    padding: 14px 18px;
+    font-weight: 700;
 
-    border-radius: 12px;
-
-    font-weight: 600;
-
-    transition: 0.2s;
-}
-
-.primary-button:hover {
-    background: var(--primary-dark);
-
-    transform: translateY(-1px);
-}
-
-.primary-button:active {
-    transform: translateY(0);
-}
-
-
-/* ==============================
-   Dashboard Header
-================================= */
-
-.dashboard-header {
     display: flex;
 
-    justify-content: space-between;
     align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.primary-button:hover {
+
+    background: #4338ca;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(79, 70, 229, 0.22);
+
+}
+
+
+.primary-button:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* ========================================
+   DASHBOARD
+======================================== */
+
+#dashboardScreen {
+
+    padding-bottom: 50px;
+
+}
+
+
+.dashboard-header {
 
     max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 25px 20px;
+    padding: 35px 24px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
 }
 
+
 .welcome-text {
-    color: var(--muted);
+
+    color: var(--text-light);
 
     font-size: 14px;
 
-    margin-bottom: 4px;
+    margin-bottom: 5px;
+
 }
+
 
 .dashboard-header h1 {
-    font-size: 28px;
+
+    font-size: 30px;
+
 }
 
+
 .icon-button {
-    width: 44px;
-    height: 44px;
+
+    width: 48px;
+
+    height: 48px;
 
     border: 1px solid var(--border);
 
+    border-radius: 15px;
+
     background: white;
 
-    border-radius: 50%;
+    box-shadow: var(--shadow);
 
-    font-size: 18px;
+    font-size: 21px;
+
+    transition: 0.2s;
+
 }
 
 
-/* ==============================
-   Dashboard
-================================= */
+.icon-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-hover);
+
+}
+
+
+/* ========================================
+   DASHBOARD CONTENT
+======================================== */
 
 .dashboard {
+
     max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 0 20px 40px;
-}
+    padding: 0 24px;
 
-.dashboard h2 {
-    font-size: 20px;
-
-    margin: 28px 0 14px;
 }
 
 
-/* ==============================
-   Student Information
-================================= */
+/* ========================================
+   STUDENT INFO
+======================================== */
 
 .student-info-card {
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    padding: 22px;
+
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 15px;
+    gap: 20px;
 
-    background: var(--card);
+    box-shadow: var(--shadow);
+
+}
+
+
+.info-item span {
+
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.info-item strong {
+
+    font-size: 15px;
+
+}
+
+
+/* ========================================
+   OVERALL AVERAGE
+======================================== */
+
+.overall-card {
+
+    margin-top: 22px;
+
+    padding: 25px;
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #f5f3ff
+        );
+
+    border: 1px solid #e1e5ff;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+.overall-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: white;
+
+    font-size: 27px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(79, 70, 229, 0.08);
+
+}
+
+
+.overall-content span {
+
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+}
+
+
+.overall-content strong {
+
+    display: block;
+
+    font-size: 32px;
+
+    margin: 3px 0;
+
+}
+
+
+.overall-content small {
+
+    color: var(--text-light);
+
+}
+
+
+/* ========================================
+   SECTION HEADINGS
+======================================== */
+
+.semester-section {
+
+    margin-top: 38px;
+
+}
+
+
+.section-heading {
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-label {
+
+    display: block;
+
+    color: var(--primary);
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    margin-bottom: 5px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: 23px;
+
+}
+
+
+/* ========================================
+   SEMESTER GRID
+======================================== */
+
+.semester-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+
+}
+
+
+.semester-card {
+
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: var(--radius);
 
     padding: 20px;
 
-    border-radius: 18px;
+    text-align: left;
 
-    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        border-color 0.2s;
+
 }
 
-.student-info-card div {
+
+.semester-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #cdd3ff;
+
+    box-shadow: var(--shadow-hover);
+
+}
+
+
+.semester-card-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+}
+
+
+.semester-number {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-weight: 800;
+
+}
+
+
+.semester-arrow {
+
+    color: var(--text-light);
+
+    font-size: 20px;
+
+}
+
+
+.semester-card-content {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    margin-bottom: 12px;
+
+}
+
+
+.semester-card-content span {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.semester-card-content strong {
+
+    font-size: 22px;
+
+}
+
+
+/* ========================================
+   PROGRESS
+======================================== */
+
+.progress-track {
+
+    height: 7px;
+
+    border-radius: 20px;
+
+    background: #edf0f6;
+
+    overflow: hidden;
+
+}
+
+
+.progress-fill {
+
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            #818cf8
+        );
+
+    transition: width 0.4s ease;
+
+}
+
+
+/* ========================================
+   PAGE HEADER
+======================================== */
+
+.page-header {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 30px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+.page-header h1 {
+
+    font-size: 28px;
+
+}
+
+
+.back-button {
+
+    width: 45px;
+
+    height: 45px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 14px;
+
+    font-size: 20px;
+
+    box-shadow: var(--shadow);
+
+    transition: 0.2s;
+
+}
+
+
+.back-button:hover {
+
+    transform: translateX(-2px);
+
+    box-shadow: var(--shadow-hover);
+
+}
+
+
+/* ========================================
+   SEMESTER PAGE
+======================================== */
+
+.semester-page {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    padding: 0 24px 50px;
+
+}
+
+
+/* ========================================
+   SEMESTER AVERAGE
+======================================== */
+
+.semester-average-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff,
+            #eef2ff
+        );
+
+    border: 1px solid #dfe7ff;
+
+    border-radius: var(--radius);
+
+    padding: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+
+}
+
+
+.semester-average-card span {
+
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.semester-average-card strong {
+
+    font-size: 38px;
+
+}
+
+
+.average-decoration {
+
+    width: 60px;
+
+    height: 60px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: white;
+
+    font-size: 28px;
+
+}
+
+
+/* ========================================
+   SUBJECTS
+======================================== */
+
+.subject-list {
+
     display: flex;
 
     flex-direction: column;
 
-    gap: 5px;
-}
-
-.student-info-card span {
-    color: var(--muted);
-
-    font-size: 13px;
-}
-
-.student-info-card strong {
-    font-size: 15px;
-}
-
-
-/* ==============================
-   Statistics
-================================= */
-
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 15px;
-}
-
-.stat-card {
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-   /* ==============================
-   Add Subject
-================================= */
-
-.marks-preview {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    background: #f8fafc;
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    padding: 16px;
-
-    margin-bottom: 12px;
-}
-
-.marks-preview span {
-    color: var(--muted);
-
-    font-size: 14px;
-}
-
-.marks-preview strong {
-    font-size: 20px;
-}
-
-
-.status-preview {
-    text-align: center;
-
-    padding: 12px;
-
-    border-radius: 12px;
+    gap: 12px;
 
     margin-bottom: 18px;
 
-    background: #f3f4f6;
-
-    color: var(--muted);
-
-    font-weight: 600;
 }
 
 
-.status-preview.pass {
-    background: #dcfce7;
-
-    color: var(--success);
-}
-
-
-.status-preview.fail {
-    background: #fee2e2;
-
-    color: var(--danger);
-}
-
-
-.input-group textarea {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    outline: none;
-
-    background: #fafafa;
-
-    color: var(--text);
-
-    font-family: inherit;
-
-    resize: vertical;
-
-    transition: 0.2s;
-}
-
-
-.input-group textarea:focus {
-    border-color: var(--primary);
+.subject-card {
 
     background: white;
 
-    box-shadow:
-        0 0 0 3px rgba(79, 70, 229, 0.10);
-}
-
-
-.secondary-button {
-    width: 100%;
-
     border: 1px solid var(--border);
 
-    background: white;
+    border-radius: 17px;
 
-    color: var(--text);
+    padding: 17px;
 
-    padding: 13px 18px;
-
-    border-radius: 12px;
-
-    font-weight: 600;
-
-    margin-top: 10px;
-
-    transition: 0.2s;
-}
-
-
-.secondary-button:hover {
-    background: #f8fafc;
-}
-
-    padding: 20px;
-}
-
-.stat-card span {
-    display: block;
-
-    color: var(--muted);
-
-    font-size: 13px;
-
-    margin-bottom: 8px;
-}
-
-.stat-card strong {
-    font-size: 28px;
-}
-
-.stat-card small {
-    color: var(--muted);
-}
-
-
-/* ==============================
-   Semester Progress
-================================= */
-
-.semester-progress {
-    display: grid;
-
-    gap: 12px;
-}
-
-.semester-item {
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    padding: 15px 18px;
-
-    border-radius: 15px;
-}
-
-.semester-top {
     display: flex;
+
+    align-items: center;
 
     justify-content: space-between;
 
-    margin-bottom: 8px;
+    gap: 15px;
+
+    box-shadow: var(--shadow);
+
 }
 
-.semester-name {
-    font-weight: 600;
+
+.subject-card-main {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+
 }
 
-.semester-average {
-    color: var(--muted);
 
-    font-size: 14px;
+.subject-icon {
+
+    width: 44px;
+
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: var(--blue-light);
+
+    font-size: 20px;
+
 }
 
-.progress-bar {
-    height: 8px;
 
-    background: #e5e7eb;
+.subject-info {
 
-    border-radius: 20px;
+    min-width: 0;
+
+}
+
+
+.subject-info h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 4px;
 
     overflow: hidden;
-}
 
-.progress-fill {
-    height: 100%;
+    text-overflow: ellipsis;
 
-    background: var(--primary);
+    white-space: nowrap;
 
-    border-radius: 20px;
-
-    transition: width 0.4s ease;
 }
 
 
-/* ==============================
-   Responsive / Mobile
-================================= */
+.subject-info p {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+.subject-result {
+
+    flex-shrink: 0;
+
+    text-align: right;
+
+}
+
+
+.subject-result strong {
+
+    font-size: 23px;
+
+}
+
+
+.subject-result span {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+.add-subject-button {
+
+    margin-top: 5px;
+
+}
+
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background: white;
+
+    border: 1px dashed var(--border);
+
+    border-radius: var(--radius);
+
+}
+
+
+.empty-icon {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.empty-state h3 {
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.empty-state p {
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+}
+
+
+/* ========================================
+   ADD SUBJECT
+======================================== */
+
+.subject-form-container {
+
+    position: relative;
+
+}
+
+
+.form-back-button {
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 25px;
+
+}
+
+
+.subject-form-container .app-logo {
+
+    margin-top: 20px;
+
+}
+
+
+#marksHint {
+
+    color: var(--text-light);
+
+}
+
+
+.marks-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 17px;
+
+    margin-bottom: 20px;
+
+    background: var(--primary-soft);
+
+    border: 1px solid #e5e1ff;
+
+    border-radius: 14px;
+
+}
+
+
+.marks-preview span {
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+}
+
+
+.marks-preview strong {
+
+    font-size: 20px;
+
+    color: var(--primary);
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
 
 @media (max-width: 700px) {
 
-    #setupScreen {
-        align-items: flex-start;
-
-        padding-top: 20px;
-    }
-
     .setup-container {
-        padding: 25px 20px;
 
-        border-radius: 20px;
+        padding: 28px 22px;
+
+        border-radius: 22px;
+
     }
 
-    .setup-container h1 {
-        font-size: 24px;
-    }
 
     .dashboard-header {
-        padding: 20px 16px;
+
+        padding: 25px 18px 15px;
+
     }
+
 
     .dashboard-header h1 {
-        font-size: 24px;
+
+        font-size: 25px;
+
     }
+
 
     .dashboard {
-        padding: 0 16px 30px;
+
+        padding: 0 18px;
+
     }
+
 
     .student-info-card {
+
         grid-template-columns: 1fr;
+
+        gap: 15px;
+
     }
 
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+
+    .overall-card {
+
+        padding: 20px;
+
     }
 
-    .stat-card {
-        padding: 16px;
+
+    .overall-content strong {
+
+        font-size: 28px;
+
     }
 
-    .stat-card strong {
-        font-size: 24px;
+
+    .semester-grid {
+
+        grid-template-columns: 1fr;
+
     }
+
+
+    .page-header {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .semester-page {
+
+        padding: 0 18px 40px;
+
+    }
+
+
+    .semester-average-card {
+
+        padding: 22px;
+
+    }
+
+
+    .semester-average-card strong {
+
+        font-size: 32px;
+
+    }
+
 }
 
 
-/* ==============================
-   Small Phones
-================================= */
+@media (max-width: 430px) {
 
-@media (max-width: 400px) {
+    #setupScreen {
 
-    .stats-grid {
-        grid-template-columns: 1fr;
+        padding: 20px 12px;
+
     }
+
 
     .setup-container {
-        padding: 22px 16px;
+
+        padding: 25px 18px;
+
     }
+
+
+    .setup-container h1 {
+
+        font-size: 25px;
+
+    }
+
+
+    .overall-card {
+
+        gap: 12px;
+
+    }
+
+
+    .overall-icon {
+
+        width: 50px;
+
+        height: 50px;
+
+        font-size: 23px;
+
+    }
+
+
+    .subject-card {
+
+        padding: 14px;
+
+    }
+
+
+    .subject-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+
+    .subject-result strong {
+
+        font-size: 20px;
+
+    }
+
 }
