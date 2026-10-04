@@ -322,6 +322,126 @@ button {
     border: 1px solid var(--border);
 
     border-radius: 18px;
+   /* ==============================
+   Add Subject
+================================= */
+
+.marks-preview {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+}
+
+.marks-preview span {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.marks-preview strong {
+    font-size: 20px;
+}
+
+
+.status-preview {
+    text-align: center;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    margin-bottom: 18px;
+
+    background: #f3f4f6;
+
+    color: var(--muted);
+
+    font-weight: 600;
+}
+
+
+.status-preview.pass {
+    background: #dcfce7;
+
+    color: var(--success);
+}
+
+
+.status-preview.fail {
+    background: #fee2e2;
+
+    color: var(--danger);
+}
+
+
+.input-group textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #fafafa;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    resize: vertical;
+
+    transition: 0.2s;
+}
+
+
+.input-group textarea:focus {
+    border-color: var(--primary);
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.10);
+}
+
+
+.secondary-button {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--text);
+
+    padding: 13px 18px;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    margin-top: 10px;
+
+    transition: 0.2s;
+}
+
+
+.secondary-button:hover {
+    background: #f8fafc;
+}
 
     padding: 20px;
 }
