@@ -24,6 +24,29 @@ const overallAverage = document.getElementById("overallAverage");
 const subjectCount = document.getElementById("subjectCount");
 const passedCount = document.getElementById("passedCount");
 const failedCount = document.getElementById("failedCount");
+const subjectScreen =
+    document.getElementById("subjectScreen");
+
+const subjectForm =
+    document.getElementById("subjectForm");
+
+const addSubjectButton =
+    document.getElementById("addSubjectButton");
+
+const cancelSubjectButton =
+    document.getElementById("cancelSubjectButton");
+
+const exam20Input =
+    document.getElementById("exam20");
+
+const final80Input =
+    document.getElementById("final80");
+
+const totalPreview =
+    document.getElementById("totalPreview");
+
+const statusPreview =
+    document.getElementById("statusPreview");
 
 
 // =================================
@@ -319,3 +342,190 @@ function createSemesterProgress() {
     }
 
 }
+// =================================
+// Subject Screen
+// =================================
+
+function showSubjectScreen() {
+
+    setupScreen.classList.add("hidden");
+
+    dashboardScreen.classList.add("hidden");
+
+    subjectScreen.classList.remove("hidden");
+
+}
+
+
+function hideSubjectScreen() {
+
+    subjectScreen.classList.add("hidden");
+
+    dashboardScreen.classList.remove("hidden");
+
+}
+// =================================
+// Open / Close Subject Form
+// =================================
+
+addSubjectButton.addEventListener("click", () => {
+
+    subjectForm.reset();
+
+    totalPreview.textContent =
+        "0 / 100";
+
+    statusPreview.textContent =
+        "Enter your marks";
+
+    statusPreview.className =
+        "status-preview";
+
+    showSubjectScreen();
+
+});
+
+
+cancelSubjectButton.addEventListener("click", () => {
+
+    hideSubjectScreen();
+
+});
+// =================================
+// Calculate Total Marks
+// =================================
+
+function calculateTotal() {
+
+    const exam20 =
+        Number(exam20Input.value) || 0;
+
+    const final80 =
+        Number(final80Input.value) || 0;
+
+    const total =
+        exam20 + final80;
+
+
+    totalPreview.textContent =
+        `${total} / 100`;
+
+
+    if (
+        exam20Input.value === "" &&
+        final80Input.value === ""
+    ) {
+
+        statusPreview.textContent =
+            "Enter your marks";
+
+        statusPreview.className =
+            "status-preview";
+
+        return;
+
+    }
+
+
+    if (total >= 50) {
+
+        statusPreview.textContent =
+            "✓ PASS";
+
+        statusPreview.className =
+            "status-preview pass";
+
+    } else {
+
+        statusPreview.textContent =
+            "✕ FAIL";
+
+        statusPreview.className =
+            "status-preview fail";
+
+    }
+
+}
+
+
+exam20Input.addEventListener(
+    "input",
+    calculateTotal
+);
+
+
+final80Input.addEventListener(
+    "input",
+    calculateTotal
+);
+// =================================
+// Save Subject
+// =================================
+
+subjectForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const subject = {
+
+            id: Date.now(),
+
+            name:
+                document
+                    .getElementById("subjectName")
+                    .value
+                    .trim(),
+
+            semester:
+                document
+                    .getElementById("subjectSemester")
+                    .value,
+
+            exam20:
+                Number(exam20Input.value),
+
+            final80:
+                Number(final80Input.value),
+
+            notes:
+                document
+                    .getElementById("subjectNotes")
+                    .value
+                    .trim()
+
+        };
+
+
+        subjects.push(subject);
+
+
+        // Save to device
+
+        localStorage.setItem(
+            "subjects",
+            JSON.stringify(subjects)
+        );
+
+
+        // Update dashboard
+
+        updateStatistics();
+
+        createSemesterProgress();
+
+
+        // Return to dashboard
+
+        hideSubjectScreen();
+
+
+        // Reset form
+
+        subjectForm.reset();
+
+    }
+);
+
